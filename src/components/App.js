@@ -11,12 +11,14 @@ class App extends Component {
 		this.state = {
 			newDate: "",
 			birthday: this.getCurrentDate(),
+      showStats: false
 		};
 	}
 
 	changeBirthday() {
 		this.setState({
 			birthday: this.state.newDate,
+      showStats: true
 		});
 	}
 
@@ -39,7 +41,11 @@ class App extends Component {
 					<Button variant="light" onClick={() => this.changeBirthday()}>
 						Submit
 					</Button>
-					<AgeStats date={this.state.birthday} />
+					{ this.state.showStats ?
+            <div className="fade age-stats">
+              <AgeStats date={this.state.birthday} />
+            </div> : ''
+          }
 				</Form>
 			</>
 		);
